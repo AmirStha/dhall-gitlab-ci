@@ -25,7 +25,7 @@ in  let CacheKeyFiles/toJSON
                 = toMap
                     { prefix = Optional/map Text JSON.Type JSON.string ckfs.prefix
                     , files =
-                        Optional/map (List Text) JSON.Type stringsArray cs.paths
+                        Optional/map (List Text) JSON.Type stringsArray ckfs.paths
                     }
 
             in  JSON.object obj
