@@ -6,6 +6,9 @@ let JSON = Prelude.JSON
 
 let CacheSpec = ./Type.dhall
 
+let CacheKeyFiles = ../CacheKeyFiles/Type.dhall
+
+
 let dropNones = ../utils/dropNones.dhall
 
 let Optional/map = Prelude.Optional.map
@@ -18,7 +21,12 @@ in  let CacheSpec/toJSON
             let obj
                 : Map.Type Text JSON.Type
                 = toMap
-                    { key = JSON.string cs.key
+                    { key = 
+                       Optional/map
+                          CacheKeyFiles.Type
+                          JSON.Type
+                          CacheKeyFiles.toJSON
+                          cs.key
                     , paths =
                         JSON.array
                           (List/map Text JSON.Type JSON.string cs.paths)
