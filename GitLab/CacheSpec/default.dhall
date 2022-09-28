@@ -2,8 +2,10 @@ let When = ../When/Type.dhall
 
 let CachePolicy = ../CachePolicy/Type.dhall
 
-in    { when = When.OnSuccess
+in    { key = "default"
+      , when = When.OnSuccess
+      , paths = [] : List Text
       , untracked = None Bool
-      , policy = CachePolicy.PullPush
+      , policy = None CachePolicy
       }
     : ./Type.dhall
