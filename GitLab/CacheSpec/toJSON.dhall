@@ -6,7 +6,7 @@ let JSON = Prelude.JSON
 
 let CacheSpec = ./Type.dhall
 
-let CacheKeyFiles = ../CacheKeyFiles/Type.dhall
+let CacheKeyFiles = ../CacheKeyFiles/package.dhall
 
 
 let dropNones = ../utils/dropNones.dhall
