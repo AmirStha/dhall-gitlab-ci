@@ -12,11 +12,6 @@ let Optional/map = Prelude.Optional.map
 
 let List/map = Prelude.List.map
 
-let stringsArray
-    : List Text → JSON.Type
-    = λ(xs : List Text) →
-        JSON.array (Prelude.List.map Text JSON.Type JSON.string xs)
-
 in  let CacheKeyFiles/toJSON
         : CacheKeyFiles → JSON.Type
         = λ(ckfs : CacheKeyFiles) →
