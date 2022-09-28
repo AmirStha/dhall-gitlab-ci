@@ -16,7 +16,7 @@ in  let CacheKeyFiles/toJSON
         : CacheKeyFiles → JSON.Type
         = λ(ckfs : CacheKeyFiles) →
             let obj
-                : Map.Type Text JSON.Type
+                : Map.Type Text (Optional JSON.Type)
                 = toMap
                     { prefix = Optional/map Text JSON.Type JSON.string ckfs.prefix
                     , files =
