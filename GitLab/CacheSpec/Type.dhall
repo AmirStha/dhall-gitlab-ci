@@ -1,8 +1,9 @@
 let When = ../When/Type.dhall
 
 let CachePolicy = ../CachePolicy/Type.dhall
+let CacheKeyFiles = ../CacheKeyFiles/Type.dhall
 
-in  { key : Text
+in  { key : Optional CacheKeyFiles
     , paths : List Text
     , untracked : Optional Bool
     , when : When
