@@ -1,6 +1,5 @@
 let Prelude = ../Prelude.dhall
 
-
 let Map = Prelude.Map
 
 let JSON = Prelude.JSON
@@ -29,6 +28,6 @@ in  let CacheKeyFiles/toJSON
                         Optional/map (List Text) JSON.Type stringsArray ckfs.files
                     }
 
-            in  JSON.object obj
+            in  JSON.object (dropNones Text JSON.Type obj)
 
     in  CacheKeyFiles/toJSON
