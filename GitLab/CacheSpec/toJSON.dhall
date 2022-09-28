@@ -35,6 +35,6 @@ in  let CacheSpec/toJSON
                         Optional/map (List Text) JSON.Type stringsArray cs.paths
                     }
 
-            in  JSON.object obj
+            in  JSON.object (dropNones Text JSON.Type obj)
 
     in  CacheSpec/toJSON
