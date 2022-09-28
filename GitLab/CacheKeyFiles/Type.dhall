@@ -1,3 +1,3 @@
 { prefix : Optional Text
-, files : List Text
+, files : Optional (List Text)
 }
