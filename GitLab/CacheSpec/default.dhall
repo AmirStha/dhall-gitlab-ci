@@ -6,7 +6,7 @@ let CacheKeyFiles = ../CacheKeyFiles/Type.dhall
 
 in    { key = None CacheKeyFiles
       , when = When.OnSuccess
-      , paths = [] : List Text
+      , paths = None (List Text)
       , untracked = None Bool
       , policy = None CachePolicy
       }

@@ -8,6 +8,10 @@ let CacheSpec = ./Type.dhall
 
 let CacheKeyFiles = ../CacheKeyFiles/package.dhall
 
+let stringsArray
+    : List Text → JSON.Type
+    = λ(xs : List Text) →
+        JSON.array (Prelude.List.map Text JSON.Type JSON.string xs)
 
 let dropNones = ../utils/dropNones.dhall
 
@@ -19,7 +23,7 @@ in  let CacheSpec/toJSON
         : CacheSpec → JSON.Type
         = λ(cs : CacheSpec) →
             let obj
-                : Map.Type Text JSON.Type
+                : Map.Type Text (Optional JSON.Type)
                 = toMap
                     { key = 
                        Optional/map
@@ -28,8 +32,7 @@ in  let CacheSpec/toJSON
                           CacheKeyFiles.toJSON
                           cs.key
                     , paths =
-                        JSON.array
-                          (List/map Text JSON.Type JSON.string cs.paths)
+                        Optional/map (List Text) JSON.Type stringsArray cs.paths
                     }
 
             in  JSON.object obj
