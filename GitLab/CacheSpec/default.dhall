@@ -1,5 +1,12 @@
 let When = ../When/Type.dhall
 
 let CachePolicy = ../CachePolicy/Type.dhall
+let CacheKeyFiles = ../CacheKeyFiles/Type.dhall
 
-in  { untracked = None Bool, when = When.OnSuccess, policy = None CachePolicy }
+
+in    { key = None CacheKeyFiles
+      , when = When.OnSuccess
+      , paths = [] : List Text
+      , untracked = None Bool
+      , policy = None CachePolicy
+      }
