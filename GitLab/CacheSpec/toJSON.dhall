@@ -32,7 +32,17 @@ in  let CacheSpec/toJSON
                           CacheKeyFiles.toJSON
                           cs.key
                     , paths =
-                        Optional/map (List Text) JSON.Type stringsArray cs.paths
+                        if    Prelude.List.null Text cs.paths
+                        then  None JSON.Type
+                        else  Some
+                                ( JSON.array
+                                    ( List/map
+                                        Text
+                                        JSON.Type
+                                        JSON.string
+                                        cs.paths
+                                    )
+                                )
                     }
 
             in  JSON.object (dropNones Text JSON.Type obj)
