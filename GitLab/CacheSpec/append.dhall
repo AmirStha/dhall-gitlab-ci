@@ -11,7 +11,7 @@ let append
     = λ(a : CacheSpec) →
       λ(b : CacheSpec) →
         { key = b.key
-        , paths = mergeOptionalList Text a.paths b.paths
+        , paths = a.paths # b.paths
         , untracked = mergeOptionalRight Bool a.untracked b.untracked
         , when = b.when
         , policy = mergeOptionalRight CachePolicy a.policy b.policy
