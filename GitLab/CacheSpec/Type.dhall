@@ -4,7 +4,7 @@ let CachePolicy = ../CachePolicy/Type.dhall
 let CacheKeyFiles = ../CacheKeyFiles/Type.dhall
 
 in  { key : Optional CacheKeyFiles
-    , paths : Optional (List Text)
+    , paths : List Text
     , untracked : Optional Bool
     , when : When
     , policy : Optional CachePolicy
