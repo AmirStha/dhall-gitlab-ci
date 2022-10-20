@@ -4,7 +4,7 @@ let Map = Prelude.Map
 
 let JSON = Prelude.JSON
 
-let CacheKeyFiles = ./Type.dhall
+let CacheKey = ./Type.dhall
 
 let dropNones = ../utils/dropNones.dhall
 
@@ -17,17 +17,17 @@ let stringsArray
     = λ(xs : List Text) →
         JSON.array (Prelude.List.map Text JSON.Type JSON.string xs)
 
-in  let CacheKeyFiles/toJSON
-        : CacheKeyFiles → JSON.Type
-        = λ(ckfs : CacheKeyFiles) →
+in  let CacheKey/toJSON
+        : CacheKey → JSON.Type
+        = λ(ck : CacheKey) →
             let obj
                 : Map.Type Text (Optional JSON.Type)
                 = toMap
-                    { prefix = Optional/map Text JSON.Type JSON.string ckfs.prefix
+                    { prefix = Optional/map Text JSON.Type JSON.string ck.prefix
                     , files =
-                        Optional/map (List Text) JSON.Type stringsArray ckfs.files
+                        Optional/map (List Text) JSON.Type stringsArray ck.files
                     }
 
             in  JSON.object (dropNones Text JSON.Type obj)
 
-    in  CacheKeyFiles/toJSON
+    in  CacheKey/toJSON

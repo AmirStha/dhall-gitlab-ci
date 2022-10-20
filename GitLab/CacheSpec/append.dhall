@@ -4,8 +4,6 @@ let CachePolicy = ../CachePolicy/Type.dhall
 
 let mergeOptionalRight = ../utils/mergeOptionalRight.dhall
 
-let mergeOptionalList = ../utils/mergeOptionalList.dhall
-
 let append
     : CacheSpec → CacheSpec → CacheSpec
     = λ(a : CacheSpec) →
