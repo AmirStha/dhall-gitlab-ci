@@ -11,7 +11,7 @@ let CacheKeyUnion/toJSON
     = λ(cku : CacheKeyUnion) →
         merge
           { CacheKey = λ(c : CacheKey.Type) → CacheKey.toJSON c
-          , Text = λ(b : Text) → JSON.Text b
+          , Text = λ(t : Text) → JSON.string t
           }
           cku
 
