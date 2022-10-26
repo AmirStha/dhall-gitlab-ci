@@ -1,3 +1,3 @@
 { prefix = None Text
-, files = None (List Text)
+, files = [] : List Text
 } : ./Type.dhall

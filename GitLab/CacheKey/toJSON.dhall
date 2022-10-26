@@ -25,7 +25,17 @@ in  let CacheKey/toJSON
                 = toMap
                     { prefix = Optional/map Text JSON.Type JSON.string ck.prefix
                     , files =
-                        Optional/map (List Text) JSON.Type stringsArray ck.files
+                        if    Prelude.List.null Text ck.files
+                        then  None JSON.Type
+                        else  Some
+                                ( JSON.array
+                                    ( Prelude.List.map
+                                        Text
+                                        JSON.Type
+                                        JSON.string
+                                        ck.files
+                                    )
+                                )
                     }
 
             in  JSON.object (dropNones Text JSON.Type obj)
