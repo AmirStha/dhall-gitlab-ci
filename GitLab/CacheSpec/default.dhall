@@ -1,7 +1,7 @@
 let When = ../When/Type.dhall
 
 let CachePolicy = ../CachePolicy/Type.dhall
-let CacheKeyUnion = ../CacheKey/Type.dhall
+let CacheKeyUnion = ../CacheKeyUnion/Type.dhall
 
 
 in    { key = None CacheKeyUnion
