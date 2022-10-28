@@ -22,6 +22,6 @@
 , Defaults = ./Defaults/package.dhall
 , Service = ./Service/package.dhall
 , CachePolicy = ./CachePolicy/package.dhall
+, CacheKeyFiles = ./CacheKeyFiles/package.dhall
 , CacheKey = ./CacheKey/package.dhall
-, CacheKeyUnion = ./CacheKeyUnion/package.dhall
 }

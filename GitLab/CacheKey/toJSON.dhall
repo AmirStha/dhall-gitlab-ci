@@ -1,43 +1,18 @@
 let Prelude = ../Prelude.dhall
 
-let Map = Prelude.Map
-
 let JSON = Prelude.JSON
 
 let CacheKey = ./Type.dhall
 
-let dropNones = ../utils/dropNones.dhall
+let CacheKeyFiles = ../CacheKeyFiles/package.dhall
 
-let Optional/map = Prelude.Optional.map
+let CacheKey/toJSON
+    : CacheKey → JSON.Type
+    = λ(cku : CacheKey) →
+        merge
+          { CacheKeyFiles = λ(c : CacheKeyFiles.Type) → CacheKeyFiles.toJSON c
+          , Text = λ(t : Text) → JSON.string t
+          }
+          cku
 
-let List/map = Prelude.List.map
-
-let stringsArray
-    : List Text → JSON.Type
-    = λ(xs : List Text) →
-        JSON.array (Prelude.List.map Text JSON.Type JSON.string xs)
-
-in  let CacheKey/toJSON
-        : CacheKey → JSON.Type
-        = λ(ck : CacheKey) →
-            let obj
-                : Map.Type Text (Optional JSON.Type)
-                = toMap
-                    { prefix = Optional/map Text JSON.Type JSON.string ck.prefix
-                    , files =
-                        if    Prelude.List.null Text ck.files
-                        then  None JSON.Type
-                        else  Some
-                                ( JSON.array
-                                    ( Prelude.List.map
-                                        Text
-                                        JSON.Type
-                                        JSON.string
-                                        ck.files
-                                    )
-                                )
-                    }
-
-            in  JSON.object (dropNones Text JSON.Type obj)
-
-    in  CacheKey/toJSON
+in  CacheKey/toJSON

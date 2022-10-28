@@ -6,7 +6,7 @@ let JSON = Prelude.JSON
 
 let CacheSpec = ./Type.dhall
 
-let CacheKeyUnion = ../CacheKeyUnion/package.dhall
+let CacheKey = ../CacheKey/package.dhall
 
 let stringsArray
     : List Text → JSON.Type
@@ -27,9 +27,9 @@ in  let CacheSpec/toJSON
                 = toMap
                     { key = 
                        Optional/map
-                          CacheKeyUnion.Type
+                          CacheKey.Type
                           JSON.Type
-                          CacheKeyUnion.toJSON
+                          CacheKey.toJSON
                           cs.key
                     , paths =
                         if    Prelude.List.null Text cs.paths

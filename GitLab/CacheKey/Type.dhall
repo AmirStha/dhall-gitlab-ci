@@ -1,3 +1,1 @@
-{ prefix : Optional Text
-, files : List Text
-}
+let CacheKeyFiles = ../CacheKeyFiles/Type.dhall in < CacheKeyFiles : CacheKeyFiles | Text : Text >
