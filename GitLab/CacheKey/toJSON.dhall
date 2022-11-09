@@ -10,7 +10,7 @@ let CacheKey/toJSON
     : CacheKey → JSON.Type
     = λ(cku : CacheKey) →
         merge
-          { CacheKeyFiles = λ(c : CacheKeyFiles.Type) → CacheKeyFiles.toJSON c
+          { Files = λ(c : CacheKeyFiles.Type) → CacheKeyFiles.toJSON c
           , Text = λ(t : Text) → JSON.string t
           }
           cku
